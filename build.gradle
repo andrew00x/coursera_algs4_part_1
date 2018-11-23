@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    jcenter()
+}
+
+tasks.clean.delete 'out'
+
+dependencies {
+    compile files('libs/algs4.jar')
+    compile 'org.javatuples:javatuples:1.2'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.12'
+    testCompile('org.spockframework:spock-core:1.1-groovy-2.4') {
+        exclude group: 'org.codehaus.groovy'
+    }
+}
