@@ -23,7 +23,7 @@ public class LinkedQueue<T> implements Queue<T> {
     public void enqueue(T e) {
         Node<T> oldLast = last;
         last = new Node<>();
-        last.item = e;
+        last.value = e;
         if (isEmpty()) first = last;
         else oldLast.next = last;
         n++;
@@ -32,7 +32,7 @@ public class LinkedQueue<T> implements Queue<T> {
     @Override
     public T dequeue() {
         if (isEmpty()) return null;
-        T o = first.item;
+        T o = first.value;
         first = first.next;
         if (isEmpty()) last = null;
         n--;
@@ -62,7 +62,7 @@ public class LinkedQueue<T> implements Queue<T> {
             @Override
             public T next() {
                 if (!hasNext()) throw new NoSuchElementException();
-                T o = cur.item;
+                T o = cur.value;
                 cur = cur.next;
                 return o;
             }

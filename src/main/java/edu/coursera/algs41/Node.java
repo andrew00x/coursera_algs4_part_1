@@ -1,6 +1,7 @@
 package edu.coursera.algs41;
 
 class Node<T> {
-    T item;
+    T value;
     Node<T> next;
+    Node<T> prev;
 }

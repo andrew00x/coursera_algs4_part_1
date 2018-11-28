@@ -21,7 +21,7 @@ public class LinkedStack<T> implements Stack<T> {
     @Override
     public void push(T o) {
         Node<T> newFirst = new Node<>();
-        newFirst.item = o;
+        newFirst.value = o;
         newFirst.next = first;
         first = newFirst;
         n++;
@@ -30,7 +30,7 @@ public class LinkedStack<T> implements Stack<T> {
     @Override
     public T pop() {
         if (isEmpty()) return null;
-        T o = first.item;
+        T o = first.value;
         first = first.next;
         n--;
         return o;
@@ -59,7 +59,7 @@ public class LinkedStack<T> implements Stack<T> {
             @Override
             public T next() {
                 if (!hasNext()) throw new NoSuchElementException();
-                T o = cur.item;
+                T o = cur.value;
                 cur = cur.next;
                 return o;
             }
