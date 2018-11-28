@@ -58,6 +58,7 @@ public class ArrayQueue<T> implements Queue<T> {
         tail = size;
     }
 
+    @SuppressWarnings("unchecked")
     private T[] newArray(int capacity) {
         return (T[]) new Object[capacity];
     }

@@ -52,6 +52,7 @@ public class ArrayStack<T> implements Stack<T> {
         array = newArray;
     }
 
+    @SuppressWarnings("unchecked")
     private T[] newArray(int capacity) {
         return (T[]) new Object[capacity];
     }
