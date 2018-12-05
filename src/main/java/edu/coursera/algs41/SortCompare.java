@@ -15,7 +15,7 @@ public class SortCompare {
         double time2 = 0.0;
         time2 = time(alg2, n, trials, time2);
         double ratio = time2 / time1;
-        StdOut.printf("For %d ints algorithm %s is %.1f faster than %s\n", n, alg1, ratio, alg2);
+        StdOut.printf("For %d doubles algorithm %s is %.1f faster than %s\n", n, alg1, ratio, alg2);
     }
 
     private static double time(String alg, int n, int trials, double time1) throws Exception {

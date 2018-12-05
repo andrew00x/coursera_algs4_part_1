@@ -53,7 +53,7 @@ class SortsTest extends Specification {
         def a = [1, 3, 5, 7, 9, 0, 2, 4, 6, 8] as Integer[]
 
         when:
-        Sorts.mergeSortBottomUp(a)
+        Sorts.mergeBottomUpSort(a)
 
         then:
         a.toList() == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -65,7 +65,7 @@ class SortsTest extends Specification {
         assert !Util.isSorted(a)
 
         when:
-        Sorts.mergeSortBottomUp(a)
+        Sorts.mergeBottomUpSort(a)
 
         then:
         Util.isSorted(a)
@@ -77,7 +77,7 @@ class SortsTest extends Specification {
         assert Util.isSorted(a)
 
         when:
-        Sorts.mergeSortBottomUp(a)
+        Sorts.mergeBottomUpSort(a)
 
         then:
         Util.isSorted(a)
@@ -89,7 +89,7 @@ class SortsTest extends Specification {
         assert !Util.isSorted(a)
 
         when:
-        Sorts.mergeSortBottomUp(a)
+        Sorts.mergeBottomUpSort(a)
 
         then:
         Util.isSorted(a)
@@ -195,7 +195,7 @@ class SortsTest extends Specification {
         def a = [1, 3, 5, 7, 9, 0, 2, 4, 6, 8] as Integer[]
 
         when:
-        Sorts.selectionSortStable(a)
+        Sorts.selectionStableSort(a)
 
         then:
         a.toList() == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -207,7 +207,7 @@ class SortsTest extends Specification {
         assert !Util.isSorted(a)
 
         when:
-        Sorts.selectionSortStable(a)
+        Sorts.selectionStableSort(a)
 
         then:
         Util.isSorted(a)
@@ -219,7 +219,7 @@ class SortsTest extends Specification {
         assert Util.isSorted(a)
 
         when:
-        Sorts.selectionSortStable(a)
+        Sorts.selectionStableSort(a)
 
         then:
         Util.isSorted(a)
@@ -231,7 +231,7 @@ class SortsTest extends Specification {
         assert !Util.isSorted(a)
 
         when:
-        Sorts.selectionSortStable(a)
+        Sorts.selectionStableSort(a)
 
         then:
         Util.isSorted(a)
@@ -280,6 +280,54 @@ class SortsTest extends Specification {
 
         when:
         Sorts.shellSort(a)
+
+        then:
+        Util.isSorted(a)
+    }
+
+    //
+
+    def 'quick sort'() {
+        def a = [1, 3, 5, 7, 9, 0, 2, 4, 6, 8] as Integer[]
+
+        when:
+        Sorts.quickSort(a)
+
+        then:
+        a.toList() == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
+
+    def 'quick sort 1000000'() {
+        def a = readInts('input_1000000.txt')
+        assert a.length == 1000000
+        assert !Util.isSorted(a)
+
+        when:
+        Sorts.quickSort(a)
+
+        then:
+        Util.isSorted(a)
+    }
+
+    def 'quick sort 1000000 already sorted'() {
+        def a = readInts('input_sorted_1000000.txt')
+        assert a.length == 1000000
+        assert Util.isSorted(a)
+
+        when:
+        Sorts.quickSort(a)
+
+        then:
+        Util.isSorted(a)
+    }
+
+    def 'quick sort 1000000 with duplicates'() {
+        def a = readInts('input_dup_1000000.txt')
+        assert a.length == 1000000
+        assert !Util.isSorted(a)
+
+        when:
+        Sorts.quickSort(a)
 
         then:
         Util.isSorted(a)

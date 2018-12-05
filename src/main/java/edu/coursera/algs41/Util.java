@@ -23,4 +23,10 @@ class Util {
         }
         return true;
     }
+
+    static <T extends Comparable<T>> int median(T[] array, int i, int j, int k) {
+        return less(array[i], array[j])
+                ? less(array[j], array[k]) ? j : less(array[i], array[k]) ? k : i
+                : less(array[j], array[k]) ? j : less(array[i], array[k]) ? i : k;
+    }
 }

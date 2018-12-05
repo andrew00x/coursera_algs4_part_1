@@ -6,6 +6,7 @@ import edu.princeton.cs.algs4.Stopwatch;
 import java.util.Arrays;
 
 import static edu.coursera.algs41.Util.less;
+import static edu.coursera.algs41.Util.median;
 import static edu.coursera.algs41.Util.swap;
 
 public class Sorts {
@@ -62,7 +63,7 @@ public class Sorts {
         StdOut.printf("selection sort %d items in %.3f sec\n", array.length, timer.elapsedTime());
     }
 
-    public static <T extends Comparable<T>> void selectionSortStable(T[] array) {
+    public static <T extends Comparable<T>> void selectionStableSort(T[] array) {
         Stopwatch timer = new Stopwatch();
         for (int i = 0; i < array.length - 1; i++) {
             int min = i;
@@ -73,7 +74,7 @@ public class Sorts {
             System.arraycopy(array, i, array, i + 1, min - i);
             array[i] = minVal;
         }
-        StdOut.printf("selection sort stable %d items in %.3f sec\n", array.length, timer.elapsedTime());
+        StdOut.printf("stable selection sort %d items in %.3f sec\n", array.length, timer.elapsedTime());
     }
 
     public static <T extends Comparable<T>> void shellSort(T[] array) {
@@ -90,14 +91,47 @@ public class Sorts {
         StdOut.printf("shell sort %d items in %.3f sec\n", array.length, timer.elapsedTime());
     }
 
-    public static <T extends Comparable<T>> void mergeSortBottomUp(T[] array) {
+    public static <T extends Comparable<T>> void mergeBottomUpSort(T[] array) {
         Stopwatch timer = new Stopwatch();
         int n = array.length;
         T[] aux = newArray(n);
         for (int size = 1; size < n; size *= 2)
             for (int lo = 0; lo < n - size; lo += 2 * size)
                 merge(array, aux, lo, lo + size - 1, Math.min(lo + 2 * size - 1, n - 1));
-        StdOut.printf("merge sort bottom-up %d items in %.3f sec\n", array.length, timer.elapsedTime());
+        StdOut.printf("bottom-up merge sort %d items in %.3f sec\n", array.length, timer.elapsedTime());
+    }
+
+    public static <T extends Comparable<T>> void quickSort(T[] array) {
+        Stopwatch timer = new Stopwatch();
+        quickSort(array, 0, array.length - 1);
+        StdOut.printf("quick sort %d items in %.3f sec\n", array.length, timer.elapsedTime());
+    }
+
+    private static <T extends Comparable<T>> void quickSort(T[] array, int lo, int hi) {
+        if (lo >= hi) return;
+        int i = partition(array, lo, hi);
+        quickSort(array, lo, i - 1);
+        quickSort(array, i + 1, hi);
+    }
+
+    private static <T extends Comparable<T>> int partition(T[] array, int lo, int hi) {
+        int m = median(array, lo, hi, lo + (hi - lo) / 2);
+        swap(array, m, lo);
+        T v = array[lo];
+        int i = lo;
+        int j = hi + 1;
+        while (true) {
+            while (less(array[++i], v)) {
+                if (i == hi) break;
+            }
+            while (less(v, array[--j])) {
+                if (j == lo) break;
+            }
+            if (i >= j) break;
+            swap(array, i, j);
+        }
+        swap(array, lo, j);
+        return j;
     }
 
     public static <T extends Comparable<T>> void systemSort(T[] array) {
