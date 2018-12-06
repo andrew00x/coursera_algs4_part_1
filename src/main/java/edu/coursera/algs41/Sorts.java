@@ -134,6 +134,28 @@ public class Sorts {
         return j;
     }
 
+    public static <T extends Comparable<T>> void quick3waySort(T[] array) {
+        Stopwatch timer = new Stopwatch();
+        quick3waySort(array, 0, array.length - 1);
+        StdOut.printf("3 way quick sort %d items in %.3f sec\n", array.length, timer.elapsedTime());
+    }
+
+    private static <T extends Comparable<T>> void quick3waySort(T[] array, int lo, int hi) {
+        if (lo >= hi) return;
+        T v = array[lo];
+        int lt = lo;
+        int gt = hi;
+        int i = lo;
+        while (i <= gt) {
+            int c = array[i].compareTo(v);
+            if (c < 0) swap(array, i++, lt++);
+            else if (c > 0) swap(array, i, gt--);
+            else i++;
+        }
+        quick3waySort(array, lo, lt - 1);
+        quick3waySort(array, gt + 1, hi);
+    }
+
     public static <T extends Comparable<T>> void systemSort(T[] array) {
         Stopwatch timer = new Stopwatch();
         Arrays.sort(array);

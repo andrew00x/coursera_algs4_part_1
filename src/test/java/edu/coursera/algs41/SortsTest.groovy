@@ -333,6 +333,52 @@ class SortsTest extends Specification {
         Util.isSorted(a)
     }
 
+    def '3 way quick sort'() {
+        def a = ['S', 'A', 'M', 'P', 'L', 'E', 'Q', 'U', 'I', 'C', 'K'] as String[]
+
+        when:
+        Sorts.quick3waySort(a)
+
+        then:
+        a.toList() == ['A', 'C', 'E', 'I', 'K', 'L', 'M', 'P', 'Q', 'S', 'U']
+    }
+
+    def '3 way quick sort 1000000'() {
+        def a = readInts('input_1000000.txt')
+        assert a.length == 1000000
+        assert !Util.isSorted(a)
+
+        when:
+        Sorts.quick3waySort(a)
+
+        then:
+        Util.isSorted(a)
+    }
+
+    def '3 way quick sort 1000000 already sorted'() {
+        def a = readInts('input_sorted_1000000.txt')
+        assert a.length == 1000000
+        assert Util.isSorted(a)
+
+        when:
+        Sorts.quick3waySort(a)
+
+        then:
+        Util.isSorted(a)
+    }
+
+    def '3 way quick sort 1000000 with duplicates'() {
+        def a = readInts('input_dup_1000000.txt')
+        assert a.length == 1000000
+        assert !Util.isSorted(a)
+
+        when:
+        Sorts.quick3waySort(a)
+
+        then:
+        Util.isSorted(a)
+    }
+
     private Integer[] readInts(String filename) {
         this.class.classLoader.getResourceAsStream(filename).withReader { input ->
             input.readLines().collect { it as int }
