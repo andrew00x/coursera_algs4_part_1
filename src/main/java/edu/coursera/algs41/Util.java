@@ -16,8 +16,12 @@ class Util {
     }
 
     static <T extends Comparable<T>> boolean isSorted(T[] arr) {
-        if (arr.length > 1) {
-            for (int i = 1; i < arr.length; i++) {
+        return isSorted(arr, 0, arr.length - 1);
+    }
+
+    static <T extends Comparable<T>> boolean isSorted(T[] arr, int lo, int hi) {
+        if (hi - lo > 1) {
+            for (int i = lo + 1; i <= hi ; i++) {
                 if (less(arr[i], arr[i - 1])) return false;
             }
         }
