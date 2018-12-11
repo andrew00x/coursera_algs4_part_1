@@ -4,8 +4,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedDeque<T> implements Deque<T> {
-    private Node<T> head;
-    private Node<T> tail;
+    private VNode<T> head;
+    private VNode<T> tail;
     private int n;
 
     public LinkedDeque(T[] arr) {
@@ -21,8 +21,8 @@ public class LinkedDeque<T> implements Deque<T> {
 
     @Override
     public void addFirst(T e) {
-        Node<T> oldHead = head;
-        head = new Node<>();
+        VNode<T> oldHead = head;
+        head = new VNode<>();
         head.value = e;
         head.next = null;
         if (tail == null) tail = head;
@@ -53,8 +53,8 @@ public class LinkedDeque<T> implements Deque<T> {
 
     @Override
     public void enqueue(T e) {
-        Node<T> oldTail = tail;
-        tail = new Node<>();
+        VNode<T> oldTail = tail;
+        tail = new VNode<>();
         tail.value = e;
         tail.prev = oldTail;
         if (head == null) head = tail;
@@ -86,7 +86,7 @@ public class LinkedDeque<T> implements Deque<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            private Node<T> cur = head;
+            private VNode<T> cur = head;
 
             @Override
             public boolean hasNext() {

@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedStack<T> implements Stack<T> {
-    private Node<T> first;
+    private VNode<T> first;
     private int n;
 
     public LinkedStack(T[] arr) {
@@ -20,7 +20,7 @@ public class LinkedStack<T> implements Stack<T> {
 
     @Override
     public void push(T o) {
-        Node<T> newFirst = new Node<>();
+        VNode<T> newFirst = new VNode<>();
         newFirst.value = o;
         newFirst.next = first;
         first = newFirst;
@@ -49,7 +49,7 @@ public class LinkedStack<T> implements Stack<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            Node<T> cur = first;
+            VNode<T> cur = first;
 
             @Override
             public boolean hasNext() {

@@ -2,25 +2,19 @@ package edu.coursera.algs41;
 
 import edu.princeton.cs.algs4.Queue;
 
-public class OrderedArrayST<K extends Comparable, V> implements ST<K, V> {
-    private static class Entry {
-        Comparable key;
-        Object value;
-
-        Entry(Comparable key, Object value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-
-    private Entry[] array = new Entry[1];
+public class OrderedArrayST<K extends Comparable<K>, V> implements ST<K, V> {
+    private Entry<K, V>[] array;
     private int n;
+
+    public OrderedArrayST() {
+        array = newArray(1);
+    }
 
     @Override
     public void put(K key, V value) {
         if (key == null || value == null) throw new IllegalArgumentException();
         if (isEmpty()) {
-            array[n++] = new Entry(key, value);
+            array[n++] = new Entry<>(key, value);
         } else {
             int i = rank(key);
             if (i < n && array[i].key.equals(key)) {
@@ -28,18 +22,17 @@ public class OrderedArrayST<K extends Comparable, V> implements ST<K, V> {
             } else {
                 if (n == array.length) resize(array.length * 2);
                 System.arraycopy(array, i, array, i + 1, n - i);
-                array[i] = new Entry(key, value);
+                array[i] = new Entry<>(key, value);
                 n++;
             }
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public V get(K key) {
         if (key == null) throw new IllegalArgumentException();
         int i = rank(key);
-        if (i < n && array[i].key.equals(key)) return (V) array[i].value;
+        if (i < n && array[i].key.equals(key)) return array[i].value;
         return null;
     }
 
@@ -67,11 +60,10 @@ public class OrderedArrayST<K extends Comparable, V> implements ST<K, V> {
         return n == 0;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public Iterable<K> keys() {
         Queue<K> keys = new Queue<>();
-        for (int i = 0; i < n; i++) keys.enqueue((K) array[i].key);
+        for (int i = 0; i < n; i++) keys.enqueue(array[i].key);
         return keys;
     }
 
@@ -81,12 +73,16 @@ public class OrderedArrayST<K extends Comparable, V> implements ST<K, V> {
     }
 
     private void resize(int capacity) {
-        Entry[] tmp = new Entry[capacity];
+        Entry<K, V>[] tmp = newArray(capacity);
         System.arraycopy(array, 0, tmp, 0, array.length);
         array = tmp;
     }
 
     @SuppressWarnings("unchecked")
+    private Entry<K, V>[] newArray(int size) {
+        return new Entry[size];
+    }
+
     private int rank(K key) {
         int lo = 0, hi = n - 1;
         while (lo <= hi) {

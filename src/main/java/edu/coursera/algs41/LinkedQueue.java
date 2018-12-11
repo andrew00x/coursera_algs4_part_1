@@ -4,8 +4,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedQueue<T> implements Queue<T> {
-    private Node<T> first;
-    private Node<T> last;
+    private VNode<T> first;
+    private VNode<T> last;
     private int n;
 
     public LinkedQueue(T[] arr) {
@@ -21,8 +21,8 @@ public class LinkedQueue<T> implements Queue<T> {
 
     @Override
     public void enqueue(T e) {
-        Node<T> oldLast = last;
-        last = new Node<>();
+        VNode<T> oldLast = last;
+        last = new VNode<>();
         last.value = e;
         if (isEmpty()) first = last;
         else oldLast.next = last;
@@ -52,7 +52,7 @@ public class LinkedQueue<T> implements Queue<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            Node<T> cur = first;
+            VNode<T> cur = first;
 
             @Override
             public boolean hasNext() {
