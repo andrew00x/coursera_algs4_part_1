@@ -2,9 +2,9 @@ package edu.coursera.algs41
 
 import spock.lang.Specification
 
-class HashSTTest extends Specification {
+class LinearProbingHashSTTest extends Specification {
     def 'put'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
         st.put(1, 'test')
@@ -15,7 +15,7 @@ class HashSTTest extends Specification {
     }
 
     def 'put replaces existed value'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
         st.put(1, 'test')
 
         when:
@@ -27,7 +27,7 @@ class HashSTTest extends Specification {
     }
 
     def 'put fails when key is null'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
         st.put(null, 'test')
@@ -38,7 +38,7 @@ class HashSTTest extends Specification {
     }
 
     def 'put fails when value is null'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
         st.put(1, null)
@@ -50,14 +50,14 @@ class HashSTTest extends Specification {
 
     def 'get on empty symbol table returns null'() {
         when:
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         then:
         !st.get(1)
     }
 
     def 'get'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
         st.put(1, 'test')
 
         expect:
@@ -70,7 +70,7 @@ class HashSTTest extends Specification {
     }
 
     def 'get fails when key is null'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
         st.get(null)
@@ -81,14 +81,14 @@ class HashSTTest extends Specification {
 
     def 'contains on empty symbol table returns null'() {
         when:
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         then:
         !st.contains(1)
     }
 
     def 'contains'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
         st.put(1, 'test')
 
         expect:
@@ -101,7 +101,7 @@ class HashSTTest extends Specification {
     }
 
     def 'contains returns false when key is null'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
         def key = null
@@ -112,14 +112,14 @@ class HashSTTest extends Specification {
 
     def 'newly created symbol table is empty'() {
         when:
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         then:
         st.isEmpty()
     }
 
     def 'is empty'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
         st.put(1, 'test')
@@ -130,14 +130,14 @@ class HashSTTest extends Specification {
 
     def 'size of newly created symbol table is zero'() {
         when:
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         then:
         0 == st.size()
     }
 
     def 'size'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
         st.put(1, 'test')
@@ -149,14 +149,14 @@ class HashSTTest extends Specification {
 
     def 'delete on empty symbol table'() {
         when:
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         then:
         st.delete(1)
     }
 
     def 'delete'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
         st.put(1, 'test')
         st.put(2, 'test2')
         st.put(3, 'test3')
@@ -172,7 +172,7 @@ class HashSTTest extends Specification {
     }
 
     def 'delete fails when key is null'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
         st.delete(null)
@@ -182,7 +182,7 @@ class HashSTTest extends Specification {
     }
 
     def 'keys'() {
-        def st = new HashST<Integer, String>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
         10.times { st.put(it, "test${it}") }
@@ -195,18 +195,18 @@ class HashSTTest extends Specification {
     }
 
     def 'consistent after resize up and rehashing'() {
-        def st = new HashST<String, Integer>()
+        def st = new LinearProbingHashST<Integer, String>()
 
         when:
-        100.times { st.put("test${it}", it) }
+        100.times { st.put(it, "test${it}") }
 
         then:
         100 == st.size()
-        (0..99).every { st.get("test${it}") == it }
+        (0..99).every { st.get(it) == "test${it}" }
     }
 
     def 'consistent after resize down and rehashing'() {
-        def st = new HashST<String, Integer>(100)
+        def st = new LinearProbingHashST<String, Integer>(100)
         100.times { st.put("test${it}", it) }
 
         when:

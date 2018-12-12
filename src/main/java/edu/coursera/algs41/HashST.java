@@ -13,7 +13,7 @@ public class HashST<K, V> implements ST<K, V> {
     }
 
     public HashST(int capacity) {
-        array = newArray(capacity);
+        array = newArray(Math.max(INITIAL_CAPACITY, capacity));
     }
 
     @Override
