@@ -5,21 +5,21 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class RandomQueue<T> implements Queue<T> {
+public class RandomizedQueue<T> implements Queue<T> {
     private T[] array;
     private int n;
 
-    public RandomQueue(T[] array) {
+    public RandomizedQueue(T[] array) {
         this.array = newArray(array.length);
         for (T e : array) enqueue(e);
     }
 
-    public RandomQueue(Iterable<T> iter) {
+    public RandomizedQueue(Iterable<T> iter) {
         this();
         for (T e : iter) enqueue(e);
     }
 
-    public RandomQueue() {
+    public RandomizedQueue() {
         this.array = newArray(1);
     }
 

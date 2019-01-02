@@ -2,10 +2,10 @@ package edu.coursera.algs41
 
 import spock.lang.Specification
 
-class RandomQueueTest extends Specification {
+class RandomizedQueueTest extends Specification {
     def 'new queue is empty'() {
         when:
-        def queue = new RandomQueue<Integer>()
+        def queue = new RandomizedQueue<Integer>()
 
 
         then:
@@ -14,7 +14,7 @@ class RandomQueueTest extends Specification {
 
     def 'queue created with array is not empty'() {
         when:
-        def queue = new RandomQueue<Integer>([1, 2, 3] as Integer[])
+        def queue = new RandomizedQueue<Integer>([1, 2, 3] as Integer[])
 
         then:
         !queue.isEmpty()
@@ -22,14 +22,14 @@ class RandomQueueTest extends Specification {
 
     def 'queue created with iterable is not empty'() {
         when:
-        def queue = new RandomQueue<Integer>([1, 2, 3])
+        def queue = new RandomizedQueue<Integer>([1, 2, 3])
 
         then:
         !queue.isEmpty()
     }
 
     def 'queue is empty when all items dequeued'() {
-        def queue = new RandomQueue<Integer>([1, 2, 3])
+        def queue = new RandomizedQueue<Integer>([1, 2, 3])
         when:
         queue.dequeue()
         queue.dequeue()
@@ -41,7 +41,7 @@ class RandomQueueTest extends Specification {
 
     def 'size of new queue is zero'() {
         when:
-        def queue = new RandomQueue<Integer>()
+        def queue = new RandomizedQueue<Integer>()
 
 
         then:
@@ -50,7 +50,7 @@ class RandomQueueTest extends Specification {
 
     def 'size of queue created with array'() {
         when:
-        def queue = new RandomQueue<Integer>([1, 2, 3] as Integer[])
+        def queue = new RandomizedQueue<Integer>([1, 2, 3] as Integer[])
 
         then:
         queue.size() == 3
@@ -58,14 +58,14 @@ class RandomQueueTest extends Specification {
 
     def 'size of queue created with iterable'() {
         when:
-        def queue = new RandomQueue<Integer>([1, 2, 3])
+        def queue = new RandomizedQueue<Integer>([1, 2, 3])
 
         then:
         queue.size() == 3
     }
 
     def 'size of queue is zero when all items dequeued'() {
-        def queue = new RandomQueue<Integer>([1, 2, 3])
+        def queue = new RandomizedQueue<Integer>([1, 2, 3])
         when:
         queue.dequeue()
         queue.dequeue()
@@ -76,7 +76,7 @@ class RandomQueueTest extends Specification {
     }
 
     def 'enqueue'() {
-        def queue = new RandomQueue<Integer>()
+        def queue = new RandomizedQueue<Integer>()
 
         when:
         queue.enqueue(1)
@@ -86,7 +86,7 @@ class RandomQueueTest extends Specification {
     }
 
     def 'dequeue'() {
-        def queue = new RandomQueue<Integer>([1, 2, 3])
+        def queue = new RandomizedQueue<Integer>([1, 2, 3])
 
         when:
         def e1 = queue.dequeue()
@@ -99,7 +99,7 @@ class RandomQueueTest extends Specification {
     }
 
     def 'dequeue from empty queue'() {
-        def queue = new RandomQueue<Integer>()
+        def queue = new RandomizedQueue<Integer>()
 
         when:
         def e = queue.dequeue()
@@ -110,14 +110,14 @@ class RandomQueueTest extends Specification {
 
     def 'iterator of empty queue is empty'() {
         when:
-        def queue = new RandomQueue<Integer>()
+        def queue = new RandomizedQueue<Integer>()
 
         then:
         !queue.iterator().hasNext()
     }
 
     def 'iterator over elements in queue'() {
-        def queue = new RandomQueue<Integer>([1, 2, 3])
+        def queue = new RandomizedQueue<Integer>([1, 2, 3])
 
         when:
         def elements = []
