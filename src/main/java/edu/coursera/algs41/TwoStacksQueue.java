@@ -31,7 +31,6 @@ public class TwoStacksQueue<T> implements Queue<T> {
     @Override
     public T dequeue() {
         if (out.isEmpty()) moveInToOut();
-        moveInToOut();
         T o = out.pop();
         if (o != null) size--;
         return o;
