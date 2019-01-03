@@ -23,7 +23,7 @@ public class MinMaxPriorityQueue<T extends Comparable<T>> implements PriorityQue
         this.min = min;
         array = heap;
         n = array.length - 1;
-        isHeap(1);
+        assert isHeap(1);
     }
 
     @Override
