@@ -12,7 +12,9 @@ tasks.clean.delete 'out'
 dependencies {
     compile files('libs/algs4.jar')
     compile 'org.javatuples:javatuples:1.2'
+    compile 'com.google.guava:guava:28.2-jre'
     testCompile 'junit:junit:4.12'
+    testCompile 'org.assertj:assertj-core:3.7.0'
     testCompile 'org.codehaus.groovy:groovy-all:2.4.12'
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4') {
         exclude group: 'org.codehaus.groovy'
