@@ -3,7 +3,7 @@ package edu.coursera.algs41;
 import edu.princeton.cs.algs4.Queue;
 
 import static edu.coursera.algs41.Util.less;
-import static org.codehaus.groovy.runtime.DefaultGroovyMethods.swap;
+import static edu.coursera.algs41.Util.swap;
 
 public class MajorityElementFinder {
     private final int ratio;

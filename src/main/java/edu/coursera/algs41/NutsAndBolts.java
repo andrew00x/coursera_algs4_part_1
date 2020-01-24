@@ -12,7 +12,7 @@ public class NutsAndBolts {
     public static class Nut implements Item {
         final int size;
 
-        Nut(int size) {
+        public Nut(int size) {
             this.size = size;
         }
 
@@ -38,7 +38,7 @@ public class NutsAndBolts {
     public static class Bolt implements Item {
         final int size;
 
-        Bolt(int size) {
+        public Bolt(int size) {
             this.size = size;
         }
 
@@ -65,7 +65,7 @@ public class NutsAndBolts {
         final Nut nut;
         final Bolt bolt;
 
-        Pair(Nut nut, Bolt bolt) {
+        public Pair(Nut nut, Bolt bolt) {
             this.nut = nut;
             this.bolt = bolt;
         }
