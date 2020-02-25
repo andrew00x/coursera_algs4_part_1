@@ -24,7 +24,8 @@ public class IsomorphicTest {
     @Parameters(name = "When string one is: {0} and string two is: {1}, then result must be: {2}")
     public static Iterable<Object[]> testData() {
         return newArrayList(new Object[][]{
-                {"aa", "ab", true},
+                {"aa", "ab", false},
+                {"ca", "ab", true},
                 {"foo", "bar", false},
                 {"add", "egg", true},
                 {"egg", "add", true},
@@ -37,6 +38,8 @@ public class IsomorphicTest {
 
     @Test
     public void checksIsomorphic() throws Exception {
-        assertThat(Isomorphic.areIsomorphic(stringOne, stringTwo)).isEqualTo(result);
+        assertThat(Isomorphic.areIsomorphic(stringOne, stringTwo))
+                .as("is %s isomorphic to %s", stringOne, stringTwo)
+                .isEqualTo(result);
     }
 }

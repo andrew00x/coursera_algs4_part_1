@@ -4,8 +4,8 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 class HappyNumberTest extends Specification {
-    static def happy = true
-    static def unhappy = false
+    static final def happy = true
+    static final def unhappy = false
 
     @Unroll
     def 'is happy number'() {
